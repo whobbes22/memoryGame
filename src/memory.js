@@ -4,7 +4,7 @@ function Deck(cardPairs){
   this.deckArray = []; 
 }
 
-let deck = new Deck(5); // global variable to be deleted?
+let deck = new Deck(3); // global variable to be deleted?
 
 Deck.prototype.buildDeck = function(){
   let arr = [];
@@ -15,6 +15,31 @@ Deck.prototype.buildDeck = function(){
   this.deckArray = arr;
 };
 
-Deck.prototype.randomizeDeck() = function(){
-  console.log(this.deckArray);
-}
+Deck.prototype.randomizeDeck =  function(){
+  let randomArr = [];
+  let deckCopy = []
+  deckCopy = this.deckArray.slice();
+  let isNotFinished = true;
+  console.log(deckCopy);
+  while(isNotFinished){
+    const rand = Math.ceil(Math.random()*deckCopy.length)-1;
+    let helperArr = [];
+    let helperArr2 = []
+    helperArr = deckCopy.splice(rand);
+    console.log("helper",helperArr,"copy",deckCopy);
+    const addNumber = helperArr.shift();
+    helperArr2 = helperArr.concat(deckCopy);
+    deckCopy.splice(0);
+    deckCopy = helperArr2.slice();
+    randomArr.push(addNumber);
+
+    console.log(deckCopy);
+    if(deckCopy.length === 0){
+      isNotFinished = false;
+    }
+  }
+
+  console.log(randomArr);
+  console.log(deckCopy);
+  
+};
