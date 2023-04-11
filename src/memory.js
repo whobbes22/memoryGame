@@ -1,14 +1,15 @@
-function Deck(cardPairs){
-  this.cardpairs = cardPairs;
+export default function Deck(cardPairs){
+  this.cardPairs = cardPairs;
   this.length = cardPairs * 2;
-  this.deckArray = []; 
+  this.deckArray = [];
+
 }
 
-let deck = new Deck(3); // global variable to be deleted?
+// let deck = new Deck(3); // global variable to be deleted?
 
 Deck.prototype.buildDeck = function(){
   let arr = [];
-  const len = this.cardpairs; 
+  const len = this.cardPairs; 
   for(let i =1; i<=len+.5; i= i+.5){
     arr.push(Math.floor(i));
   }
@@ -17,14 +18,14 @@ Deck.prototype.buildDeck = function(){
 
 Deck.prototype.randomizeDeck =  function(){
   let randomArr = [];
-  let deckCopy = []
+  let deckCopy = [];
   deckCopy = this.deckArray.slice();
   let isNotFinished = true;
   console.log(deckCopy);
   while(isNotFinished){
     const rand = Math.ceil(Math.random()*deckCopy.length)-1;
     let helperArr = [];
-    let helperArr2 = []
+    let helperArr2 = [];
     helperArr = deckCopy.splice(rand);
     console.log("helper",helperArr,"copy",deckCopy);
     const addNumber = helperArr.shift();
@@ -38,8 +39,12 @@ Deck.prototype.randomizeDeck =  function(){
       isNotFinished = false;
     }
   }
-
   console.log(randomArr);
   console.log(deckCopy);
-  
 };
+
+Deck.prototype.peekCard = function(num){
+  return this.deckArray[num];
+};  
+
+
